@@ -5,7 +5,7 @@ using SkillSharing.Model;
 
 namespace SkillSharing.Data
 {
-    public class SkillSharingSeed : DropCreateDatabaseAlways<SkillSharingContext>
+    public class SkillSharingSeed : DropCreateDatabaseIfModelChanges<SkillSharingContext>
     {
         public SkillSharingSeed()
         {
