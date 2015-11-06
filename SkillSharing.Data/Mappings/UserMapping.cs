@@ -7,7 +7,6 @@ namespace SkillSharing.Data.Mappings
     {
         public UserMapping()
         {
-            HasOptional(x => x.Tags).WithMany();
         }
     }
 }

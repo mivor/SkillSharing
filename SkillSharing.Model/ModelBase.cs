@@ -2,9 +2,8 @@
 
 namespace SkillSharing.Model
 {
-    public class Tag
+    public abstract class ModelBase
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
     }
 }

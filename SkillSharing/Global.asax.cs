@@ -12,12 +12,6 @@ namespace SkillSharing
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<SkillSharingDataContext>());
-            using (var ctx = new SkillSharingDataContext())
-            {
-                var users = ctx.Users.ToList();
-            }
-
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

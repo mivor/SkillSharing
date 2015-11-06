@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SkillSharing.Model
 {
-    public class User
+    public class User : ModelBase
     {
-        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public ICollection<Tag> Tags { get; set; } 
+        public string Mail { get; set; }
+        public virtual ICollection<Channel> Channels { get; set; }
+        public virtual ICollection<OrgStructure> OrgStructures { get; set; } 
     }
 }
