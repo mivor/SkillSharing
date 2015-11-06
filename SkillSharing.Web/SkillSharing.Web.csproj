@@ -14,7 +14,7 @@
     <RootNamespace>SkillSharing.Web</RootNamespace>
     <AssemblyName>SkillSharing.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -109,9 +109,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55429</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/SkillSharing.Web</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:90</IISAppRootUrl>
+          <IISUrl>http://localhost:55429/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
