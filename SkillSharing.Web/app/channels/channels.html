@@ -1,0 +1,10 @@
+﻿<div>
+    {{::vm.title}}
+
+    <div class="channels">
+        <div class="channel" ng-repeat="channel in vm.channels">
+            <strong>{{channel.Name}}</strong>
+            <a><span class="glyphicon" ng-class="{'glyphicon-star-empty': channel.IsTodo,'glyphicon-star': !channel.IsTodo}"></span></a>
+        </div>
+    </div>
+</div>

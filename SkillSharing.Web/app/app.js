@@ -38,6 +38,21 @@
                         controllerAs: 'vm'
                     }
                 }
+            })
+            .state("channels", {
+                url: "/channels",
+                views: {
+                    '': {
+                        templateUrl: 'app/channels/channels.html',
+                        controller: 'Channels',
+                        controllerAs: 'vm'
+                    },
+                    'sidebar@': {
+                        templateUrl: 'app/sidebar/sidebar.html',
+                        controller: 'Sidebar',
+                        controllerAs: 'vm'
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');
