@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillSharing.Data", "SkillS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillSharing.Model", "SkillSharing.Model\SkillSharing.Model.csproj", "{E2759114-14BC-4063-BA77-9322B7C36807}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillSharing.Service", "SkillSharing.Service\SkillSharing.Service.csproj", "{AECB8DB7-5577-4417-AFCD-4AAB8C5D5F01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E2759114-14BC-4063-BA77-9322B7C36807}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2759114-14BC-4063-BA77-9322B7C36807}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2759114-14BC-4063-BA77-9322B7C36807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AECB8DB7-5577-4417-AFCD-4AAB8C5D5F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AECB8DB7-5577-4417-AFCD-4AAB8C5D5F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AECB8DB7-5577-4417-AFCD-4AAB8C5D5F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AECB8DB7-5577-4417-AFCD-4AAB8C5D5F01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

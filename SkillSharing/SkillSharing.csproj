@@ -154,8 +154,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ChannelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrgStructuresController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Dtos\ChannelDto.cs" />
+    <Compile Include="Dtos\DtoBase.cs" />
+    <Compile Include="Dtos\OrgStructureDto.cs" />
+    <Compile Include="Dtos\PostDto.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +229,10 @@
     <ProjectReference Include="..\SkillSharing.Model\SkillSharing.Model.csproj">
       <Project>{e2759114-14bc-4063-ba77-9322b7c36807}</Project>
       <Name>SkillSharing.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SkillSharing.Service\SkillSharing.Service.csproj">
+      <Project>{AECB8DB7-5577-4417-AFCD-4AAB8C5D5F01}</Project>
+      <Name>SkillSharing.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

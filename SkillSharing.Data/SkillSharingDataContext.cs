@@ -16,30 +16,5 @@ namespace SkillSharing.Data
         {
             Database.SetInitializer(new SkillSharingSeed());
         }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-//            modelBuilder.Entity<OrgStructure>()
-//                   .HasMany<User>(s => s.Users)
-//                   .WithMany(c => c.OrgStructures)
-//                   .Map(x =>
-//                   {
-//                       x.MapLeftKey("OrgStructure_Id");
-//                       x.MapRightKey("User_Id");
-//                       x.ToTable("OrgStructuresUsers");
-//                   });
-//
-//            modelBuilder.Entity<OrgStructure>()
-//                   .HasMany<Channel>(s => s.Channels)
-//                   .WithMany(c => c.OrgStructures)
-//                   .Map(x =>
-//                   {
-//                       x.MapLeftKey("OrgStructure_Id");
-//                       x.MapRightKey("Channel_Id");
-//                       x.ToTable("OrgStructuresChannels");
-//                   });
-        }
     }
 }

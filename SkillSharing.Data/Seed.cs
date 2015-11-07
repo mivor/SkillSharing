@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Data.Entity;
 using SkillSharing.Model;
 
@@ -7,27 +7,98 @@ namespace SkillSharing.Data
 {
     public class SkillSharingSeed : DropCreateDatabaseIfModelChanges<SkillSharingContext>
     {
-        public SkillSharingSeed()
-        {
-        }
-
         protected override void Seed(SkillSharingContext context)
         {
-            var channel = new Channel {Id = Guid.NewGuid(), Name = "News"};
-            var user = new User {Id = Guid.NewGuid(), Mail = "a@a.com"};
-            context.OrgStructures.Add(new OrgStructure
+            var user = new User
             {
                 Id = Guid.NewGuid(),
-                Name = "CC",
-                Channels = new Collection<Channel>
+                FirstName = "Razvan",
+                LastName = "Rotaru",
+                Mail = "razvan.rotaru@accesa.eu"
+            };
+
+            var ykc = new Channel
+            {
+                Id = Guid.NewGuid(), 
+                Name = "Yukon"
+            };
+
+            var js = new Channel
+            {
+                Id = Guid.NewGuid(), 
+                Name = "JavaScript"
+            };
+
+            var cs = new Channel
+            {
+                Id = Guid.NewGuid(), 
+                Name = "C#"
+            };
+
+            var sap = new Channel
+            {
+                Id = Guid.NewGuid(), 
+                Name = "SAP"
+            };
+
+            var bi = new OrgStructure
+            {
+                Id = Guid.NewGuid(),
+                Name = "Business Integration & Reporting",
+            };
+
+            var sm = new OrgStructure
+            {
+                Id = Guid.NewGuid(),
+                Name = "Scientific & Medical"
+            };
+
+            var yk = new OrgStructure
+            {
+                Id = Guid.NewGuid(),
+                Name = "Yukon"
+            };
+
+            var tc = new OrgStructure
+            {
+                Id = Guid.NewGuid(),
+                Name = "Technical"
+            };
+
+            yk.Channels = new List<Channel> { ykc };
+            tc.Channels = new List<Channel> { js };
+            bi.Channels = new List<Channel> { sap };
+            sm.Channels = new List<Channel> { cs };
+
+            var sts = new List<OrgStructure>
+            {
+                bi, sm, yk, tc
+            };
+
+            var posts = new List<Post>
+            {
+                new Post
                 {
-                   channel
+                    Id = Guid.NewGuid(),
+                    Channel = cs,
+                    Content = "ROCKS",
+                    Name = "working post",
+                    Publisher = user
                 },
-                Users = new Collection<User>
+                new Post
                 {
-                    user
+                    Id = Guid.NewGuid(),
+                    Channel = sap,
+                    Content = "inteligence",
+                    Name = "sap training",
+                    Publisher = user
                 }
-            });
+            };
+
+            sts.ForEach(x => x.Users = new List<User> {user});
+
+            context.OrgStructures.AddRange(sts);
+            context.Posts.AddRange(posts);
 
             context.SaveChanges();
 
