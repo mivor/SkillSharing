@@ -54,6 +54,7 @@ namespace SkillSharing.Service
                 };
                 state.IsTodo = postState.IsTodo;
                 state.IsDone = postState.IsDone;
+                state.IsHidden = postState.IsHidden;
 
                 ctx.PostStates.Add(state);
 
