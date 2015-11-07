@@ -55,10 +55,13 @@ namespace SkillSharing.Controllers
             return new PostDto
             {
                 Id = model.Post.Id,
-                Content = model.Post.Content,
                 Name = model.Post.Name,
+                Content = model.Post.Content,
+                Timestamp = model.Post.Timestamp,
+                IsSticky = model.Post.IsSticky,
                 IsTodo = model.IsTodo,
-                IsDone = model.IsDone
+                IsDone = model.IsDone,
+                IsHidden = model.IsHidden,
             };
         }
     }
