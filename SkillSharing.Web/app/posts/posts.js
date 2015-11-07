@@ -20,7 +20,7 @@
             vm.type = $stateParams.type;
             vm.id = $stateParams.id;
             dataservice.getPosts(vm.type, vm.id).then(function (data) {
-                vm.posts = data;
+                vm.posts = data ? data : [];
             });
         }
 
