@@ -5,9 +5,9 @@
         .module('app.posts')
         .controller('Posts', Posts);
 
-    Posts.$inject = ['$stateParams','dataservice'];
+    Posts.$inject = ['$rootScope', '$stateParams', 'dataservice'];
 
-    function Posts($stateParams, dataservice) {
+    function Posts($rootScope, $stateParams, dataservice) {
         var vm = this;
         vm.setAsDone = setAsDone;
         vm.setAsToDo = setAsToDo;
@@ -27,12 +27,16 @@
 
         function setAsDone(post) {
             post.IsDone = true;
-            dataservice.updatePost(post);
+            dataservice.updatePost(post).then(function () {
+                $rootScope.$broadcast('updateToDo');
+            });
         }
 
         function setAsToDo(post) {
-            post.IsTodo = true;
-            dataservice.updatePost(post);
+            post.IsTodo = !post.IsTodo;
+            dataservice.updatePost(post).then(function () {
+                $rootScope.$broadcast('updateToDo');
+            });
         }
 
         function setAsHidden(post) {

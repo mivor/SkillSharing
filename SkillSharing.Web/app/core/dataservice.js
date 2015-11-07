@@ -17,6 +17,7 @@
             getOrgstructures: getOrgstructures,
             updatePost: updatePost,
             createPost: createPost,
+            subscribeChannel: subscribeChannel
             getPublisherMetrics: getPublisherMetrics
         };
 
@@ -98,6 +99,15 @@
 
         function getPublisherMetrics() {
             return $http.get(WebApi + 'posts')
+                .then(getDataComplete);
+
+            function getDataComplete(response) {
+                return response.data;
+            }
+        }
+
+        function subscribeChannel(channel) {
+            return $http.post(WebApi + 'channels', channel)
                 .then(getDataComplete);
 
             function getDataComplete(response) {
