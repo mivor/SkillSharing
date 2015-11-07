@@ -33,11 +33,11 @@ namespace SkillSharing.Service
             }
         }
 
-        public IEnumerable<Post> GetByOrgStructure(Guid orgStructureId)
+        public IEnumerable<PostState> GetByOrgStructure(Guid orgStructureId)
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.Channels.Single(x => x.Id == orgStructureId).Posts.ToList();
+                return ctx.PostStates.Where(x => x.Post.Channel.OrgStructures.Select(o => o.Id).Contains(orgStructureId)).Include(x => x.Post).ToList();
             }
         }
     }
