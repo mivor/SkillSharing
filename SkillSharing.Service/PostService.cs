@@ -41,6 +41,26 @@ namespace SkillSharing.Service
             }
         }
 
+        public void UpdateState(PostState postState)
+        {
+            using (var ctx = new SkillSharingContext())
+            {
+                var state = ctx.PostStates.SingleOrDefault(x => x.Id == postState.Id && x.User.Id == postState.User.Id);
+                state = state ?? new PostState
+                {
+                    Id = Guid.NewGuid(),
+                    Post = new Post {Id = postState.Post.Id},
+                    User = new User {Id = postState.User.Id}
+                };
+                state.IsTodo = postState.IsTodo;
+                state.IsDone = postState.IsDone;
+
+                ctx.PostStates.Add(state);
+
+                ctx.SaveChanges();
+            }
+        }
+
         private PostState GetPostState(Post post, Guid userId)
         {
             var state = post.PostStates.SingleOrDefault(s => s.User.Id == userId);

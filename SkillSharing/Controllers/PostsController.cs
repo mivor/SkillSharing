@@ -22,6 +22,16 @@ namespace SkillSharing.Controllers
             return _service.GetAll(UserSession.UserId).Select(AdaptModelToDto).ToList();
         }
 
+        public void Post([FromBody] PostDto post)
+        {
+            
+        }
+
+        public void Put([FromBody] PostDto post)
+        {
+            
+        }
+
         [Route("api/posts/todo")]
         public IEnumerable<PostDto> GetTodo()
         {
