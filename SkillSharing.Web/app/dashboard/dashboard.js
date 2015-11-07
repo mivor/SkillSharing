@@ -3,10 +3,18 @@
 
     angular
         .module('app.dashboard')
-        .controller('Dashboard',Dashboard);
+        .controller('Dashboard', Dashboard);
 
-    function Dashboard() {
+    Dashboard.$inject = ['dataservice'];
+
+    function Dashboard(dataservice) {
         var vm = this;
         vm.title = 'Dashboard';
+
+        activate();
+
+        function activate() {
+
+        }
     }
 })();

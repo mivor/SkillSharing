@@ -1,24 +1,33 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<html ng-app="app" ng-controller="Core">
 <head>
     <title>Accesa | Knowledge Sharing Platform</title>
     <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 
     <script src="js/bootstrap.js"></script>
 
     <script src="js/angular.js"></script>
-    <script src="js/angular-route.js"></script>
+    <script src="js/angular-ui-router.js"></script>
 
     <script src="app/app.js"></script>
 
     <script src="app/core/core.module.js"></script>
+    <script src="app/core/core.js"></script>
     <script src="app/core/dataservice.js"></script>
 
     <script src="app/dashboard/dashboard.module.js"></script>
     <script src="app/dashboard/dashboard.js"></script>
+
+    <script src="app/posts/posts.module.js"></script>
+    <script src="app/posts/posts.js"></script>
+
+    <script src="app/sidebar/sidebar.module.js"></script>
+    <script src="app/sidebar/sidebar.js"></script>
 </head>
-<body ng-app="app">
-    <div ng-view>
+<body class="container">
+    <div class="row">
+        <div ui-view="sidebar" class="col-md-3"></div>
+        <div ui-view="" class="col-md-9"></div>
     </div>
 </body>
 </html>
