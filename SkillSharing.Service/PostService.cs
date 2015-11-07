@@ -93,7 +93,7 @@ namespace SkillSharing.Service
 
         private PostState GetPostState(Post post, Guid userId)
         {
-            var state = post.PostStates.SingleOrDefault(s => s.User.Id == userId);
+            var state = post.PostStates.SingleOrDefault(s => s.UserId == userId && s.PostId == post.Id);
             return state ?? new PostState
             {
                 Id = Guid.NewGuid(),
