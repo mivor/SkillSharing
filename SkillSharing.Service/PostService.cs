@@ -25,11 +25,11 @@ namespace SkillSharing.Service
             }
         }
 
-        public IEnumerable<Post> GetByChannel(Guid channelId)
+        public IEnumerable<PostState> GetByChannel(Guid channelId)
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.Channels.Single(x => x.Id == channelId).Posts.ToList();
+                return ctx.PostStates.Where(x => x.Post.Channel.Id == channelId).Include(x => x.Post).ToList();
             }
         }
 
