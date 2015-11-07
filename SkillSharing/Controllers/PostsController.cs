@@ -22,7 +22,7 @@ namespace SkillSharing.Controllers
             return _service.GetAll(UserSession.UserId);
         }
 
-        [Route("posts/todo")]
+        [Route("api/posts/todo")]
         public IEnumerable<PostDto> GetTodo()
         {
             return _service.GetAllTodo(UserSession.UserId).Select(x => new PostDto
@@ -35,7 +35,7 @@ namespace SkillSharing.Controllers
             }).ToList();
         }
 
-        [Route("posts/channel/{id}")]
+        [Route("api/posts/channel/{id}")]
         public IEnumerable<PostDto> GetByChannel(Guid id)
         {
             return _service.GetByChannel(id).Select(x => new PostDto
@@ -48,7 +48,7 @@ namespace SkillSharing.Controllers
             }).ToList();
         }
 
-        [Route("posts/orgstructure/{id}")]
+        [Route("api/posts/orgstructure/{id}")]
         public IEnumerable<Post> GetByOrgStructure(Guid id)
         {
             return _service.GetByOrgStructure(id);

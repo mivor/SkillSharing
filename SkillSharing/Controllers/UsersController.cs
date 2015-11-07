@@ -8,7 +8,7 @@ namespace SkillSharing.Controllers
 {
     public class UsersController : ApiController
     {
-        [Route("users/current")]
+        [Route("api/users/current")]
         public UserDto GetCurrent()
         {
             using (var ctx = new SkillSharingContext())

@@ -10,14 +10,14 @@
 
     function dataservice($http, WebApi) {
         return {
-            getUser: getUser,
+            getCurrentUser: getCurrentUser,
             getPosts: getPosts,
             getChannels: getChannels,
-            getOrgStructure: getOrgStructure
+            getOrgstructures: getOrgstructures
         };
 
-        function getUser() {
-            return $http.get(WebApi + 'user')
+        function getCurrentUser() {
+            return $http.get(WebApi + 'users/current')
                 .then(getDataComplete);
 
             function getDataComplete(response) {
@@ -26,7 +26,7 @@
         }
 
         function getPosts(type, id) {
-            var url = WebApi;
+            var url = WebApi + 'posts\\';
             switch (type) {
                 case 'todo':
                     url += 'todo';
@@ -48,7 +48,7 @@
         }
 
         function getChannels() {
-            return $http.get(WebApi + 'channels')
+            return $http.get(WebApi + 'channels/subscribed')
                 .then(getDataComplete);
 
             function getDataComplete(response) {
@@ -56,7 +56,7 @@
             }
         }
 
-        function getOrgStructure() {
+        function getOrgstructures() {
             return $http.get(WebApi + 'orgstructures')
                 .then(getDataComplete);
 
