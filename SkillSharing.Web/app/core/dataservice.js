@@ -17,7 +17,7 @@
             getOrgstructures: getOrgstructures,
             updatePost: updatePost,
             createPost: createPost,
-            subscribeChannel: subscribeChannel
+            subscribeChannel: subscribeChannel,
             getPublisherMetrics: getPublisherMetrics
         };
 

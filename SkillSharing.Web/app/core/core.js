@@ -24,37 +24,62 @@
                     vm.orgstructures = data;
                 });
                 dataservice.getPosts('todo').then(function (data) {
-                    vm.posts = []
-                    angular.forEach(data, function (post) {
+                    vm.posts = [];
+                    angular.forEach(data, function(post) {
                         if (!post.IsDone) {
                             vm.posts.push(post);
                         }
-                    })
-                    vm.posts = data ? data : [];
+                    });
 
-                    var todo = 2;
-                    if (vm.posts.length == 0) {
+                    var allPosts = data.length;
+                    if (allPosts == 0) {
                         vm.progress = 0;
                     } else {
-                        vm.progress = todo / vm.posts.length * 100;
+                        var todoPosts = allPosts - vm.posts.length;
+                        vm.progress = todoPosts / allPosts * 100;
                     }
                 });
             });
         }
 
         function setAsDone(post) {
-            post.IsDone = !post.IsTodo;
-            dataservice.updatePost(post);
+            post.IsDone = true;
+            dataservice.updatePost(post).then(function() {
+                dataservice.getPosts('todo').then(function (data) {
+                    vm.posts = [];
+                    angular.forEach(data, function (post) {
+                        if (!post.IsDone) {
+                            vm.posts.push(post);
+                        }
+                    });
+
+                    var allPosts = data.length;
+                    if (allPosts == 0) {
+                        vm.progress = 0;
+                    } else {
+                        var todoPosts = allPosts - vm.posts.length;
+                        vm.progress = todoPosts / allPosts * 100;
+                    }
+                });
+            });
         }
 
         $scope.$on('updateToDo', function () {
             dataservice.getPosts('todo').then(function (data) {
-                vm.posts = []
-                angular.forEach(data, function (post) {
+                vm.posts = [];
+                angular.forEach(data, function(post) {
                     if (!post.IsDone) {
                         vm.posts.push(post);
                     }
-                })
+                });
+
+                var allPosts = data.length;
+                if (allPosts == 0) {
+                    vm.progress = 0;
+                } else {
+                    var todoPosts = allPosts - vm.posts.length;
+                    vm.progress = todoPosts / allPosts * 100;
+                }
             });
         });
 

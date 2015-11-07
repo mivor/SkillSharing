@@ -43,6 +43,13 @@ namespace SkillSharing.Data
                 Name = "SAP"
             };
 
+            var boarding = new Channel
+            {
+                Id = Guid.NewGuid(),
+                Name = "Onboarding",
+                IsRequired = true
+            };
+
             var bi = new OrgStructure
             {
                 Id = Guid.NewGuid(),
@@ -67,11 +74,10 @@ namespace SkillSharing.Data
                 Name = "Technical"
             };
 
-            yk.Channels = new List<Channel> { ykc };
+            yk.Channels = new List<Channel> { ykc, boarding };
             tc.Channels = new List<Channel> { js };
             bi.Channels = new List<Channel> { sap };
             sm.Channels = new List<Channel> { cs };
-
 
 
             var sts = new List<OrgStructure>
@@ -87,16 +93,24 @@ namespace SkillSharing.Data
                 {
                     Id = Guid.NewGuid(),
                     Channel = cs,
-                    Content = "ROCKS",
-                    Name = "working post none",
+                    Content = "See at MSDN",
+                    Name = "C# 7 proposal",
                     Publisher = user
                 },
                 new Post
                 {
                     Id = Guid.NewGuid(),
                     Channel = cs,
-                    Content = "ROCKS",
-                    Name = "working post todo",
+                    Content = "https://github.com/dotnet/roslyn/issues/206",
+                    Name = "Patten matching proposal",
+                    Publisher = user
+                },
+                new Post
+                {
+                    Id = Guid.NewGuid(),
+                    Channel = js,
+                    Content = "You can get it from the company library",
+                    Name = "Read the Good parts",
                     Publisher = user,
                     IsSticky = true
                 },
@@ -104,17 +118,42 @@ namespace SkillSharing.Data
                 {
                     Id = Guid.NewGuid(),
                     Channel = sap,
-                    Content = "inteligence",
-                    Name = "sap training done",
+                    Content = "Try German classes",
+                    Name = "Improve communication skills",
                     Publisher = user,
                 },
                 new Post
                 {
                     Id = Guid.NewGuid(),
-                    Channel = sap,
-                    Content = "inteligence",
-                    Name = "sap training todo done",
+                    Channel = ykc,
+                    Content = "There will be no internet on Friday after 2 am",
+                    Name = "General announcement",
                     Publisher = user
+                },
+                new Post
+                {
+                    Id = Guid.NewGuid(),
+                    Channel = boarding,
+                    Name = "Socialize",
+                    Content = "Go out to lunch with at least 3 colleagues",
+                    Publisher = user
+                },
+                new Post
+                {
+                    Id = Guid.NewGuid(),
+                    Channel = boarding,
+                    Name = "Kitchen workflow",
+                    Content = "Read the kitchen workflow",
+                    Publisher = user
+                },
+                new Post
+                {
+                    Id = Guid.NewGuid(),
+                    Channel = boarding,
+                    Name = "AIMA",
+                    Content = "Learn how to use AIMA",
+                    Publisher = user,
+                    IsSticky = true
                 }
             };
 

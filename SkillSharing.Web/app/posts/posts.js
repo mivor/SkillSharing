@@ -48,6 +48,7 @@
             post.ChannelId = vm.id;
             dataservice.createPost(post).then(function (data) {
                 vm.posts.push(data);
+                vm.post = {};
             });
         }
     }

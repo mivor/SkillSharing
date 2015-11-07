@@ -5,9 +5,9 @@
         .module('app.dashboard')
         .controller('Dashboard', Dashboard);
 
-    Dashboard.$inject = ['dataservice'];
+    Dashboard.$inject = ['$rootScope','dataservice'];
 
-    function Dashboard(dataservice) {
+    function Dashboard($rootScope,dataservice) {
         var vm = this;
         vm.title = 'All Posts';
         vm.setAsDone = setAsDone;
@@ -17,24 +17,32 @@
         activate();
 
         function activate() {
-            dataservice.getPublisherMetrics().then(function (data) {
-                vm.posts = data ? data : [];
+            dataservice.getCurrentUser().then(function() {
+                dataservice.getPublisherMetrics().then(function(data) {
+                    vm.posts = data ? data : [];
+                });
             });
         }
 
         function setAsDone(post) {
             post.IsDone = true;
-            dataservice.updatePost(post);
+            dataservice.updatePost(post).then(function () {
+                $rootScope.$broadcast('updateToDo');
+            });
         }
 
         function setAsToDo(post) {
-            post.IsTodo = true;
-            dataservice.updatePost(post);
+            post.IsTodo = !post.IsTodo;
+            dataservice.updatePost(post).then(function () {
+                $rootScope.$broadcast('updateToDo');
+            });
         }
 
         function setAsHidden(post) {
             post.IsHidden = true;
-            dataservice.updatePost(post);
+            dataservice.updatePost(post).then(function () {
+                $rootScope.$broadcast('updateToDo');
+            });
         }
     }
 })();

@@ -21,7 +21,7 @@ namespace SkillSharing.Service
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.PostStates.Where(x => x.IsTodo && x.User.Id == userId).Include(x => x.Post).ToList();
+                return ctx.PostStates.Where(x => !x.IsHidden && x.IsTodo && x.User.Id == userId).Include(x => x.Post).ToList();
             }
         }
 
@@ -93,7 +93,7 @@ namespace SkillSharing.Service
 
         private PostState GetPostState(Post post, Guid userId)
         {
-            var state = post.PostStates.SingleOrDefault(s => s.UserId == userId && s.PostId == post.Id);
+            var state = post.PostStates.FirstOrDefault(s => s.UserId == userId && s.PostId == post.Id);
             return state ?? new PostState
             {
                 Id = Guid.NewGuid(),
