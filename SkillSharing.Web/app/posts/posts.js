@@ -11,6 +11,7 @@
         var vm = this;
         vm.setAsDone = setAsDone;
         vm.setAsToDo = setAsToDo;
+        vm.setAsHidden = setAsHidden;
         vm.createPost = createPost;
 
         activate();
@@ -31,6 +32,11 @@
 
         function setAsToDo(post) {
             post.IsTodo = true;
+            dataservice.updatePost(post);
+        }
+
+        function setAsHidden(post) {
+            post.IsHidden = true;
             dataservice.updatePost(post);
         }
 

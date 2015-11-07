@@ -24,7 +24,14 @@
                     vm.orgstructures = data;
                 });
                 dataservice.getPosts('todo').then(function (data) {
-                    vm.posts = data;
+                    vm.posts = data ? data : [];
+
+                    var todo = 2;
+                    if (vm.posts.length == 0) {
+                        vm.progress = 0;
+                    } else {
+                        vm.progress = todo / vm.posts.length * 100;
+                    }
                 });
             });
         }

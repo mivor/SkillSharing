@@ -33,16 +33,16 @@
                     <h1>{{vm.user.FirstName}} {{vm.user.LastName}}</h1>
                 </a>
             </div>
+            <ul class="list-group">Channels</ul>
             <ul class="list-group">
                 <a ui-sref="posts({title:channel.Name,type:'channel',id:channel.Id})" class="list-group-item" ng-repeat="channel in vm.channels">
                     {{::channel.Name}}
                 </a>
-            </ul>
-            <ul class="list-group">
                 <a ui-sref="channels" class="list-group-item">
-                    Channels
+                    See all
                 </a>
             </ul>
+            <ul class="list-group">My Cells</ul>
             <ul class="list-group">
                 <a ui-sref="posts({title:orgstructure.Name,type:'orgstructure',id:orgstructure.Id})" class="list-group-item" ng-repeat="orgstructure in vm.orgstructures">
                     {{::orgstructure.Name}}
@@ -65,6 +65,10 @@
                         <h2 ng-click="vm.setAsDone(post)"><span class="glyphicon glyphicon-ok" ng-class="{'bookmarked':post.IsDone}"></span></h2>
                     </div>
                 </div>
+            </div>
+            <div class="progres">
+                <h1>Progress</h1>
+                <h2>{{vm.progress}} %</h2>
             </div>
         </div>
     </div>

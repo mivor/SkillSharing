@@ -1,5 +1,18 @@
 ﻿<div>
-    {{vm.title}}
+    <h1>{{vm.title}}</h1>
 
-    
+    <div class="posts">
+        <div class="post" ng-repeat="post in vm.posts" ng-hide="post.IsHidden">
+            <div class="content">
+                <strong>{{post.Name}}</strong><br />
+                {{post.Content}}
+            </div>
+            <div class="buttons">
+                <h2 ng-click="vm.setAsHidden(post)"><span class="glyphicon glyphicon-eye-close"></span></h2>
+                <h2 ng-click="vm.setAsDone(post)"><span class="glyphicon glyphicon-ok" ng-class="{'bookmarked':post.IsDone}"></span></h2>
+                <h2 ng-click="vm.setAsToDo(post)"><span class="glyphicon" ng-class="{'glyphicon-star-empty': !post.IsTodo,'glyphicon-star': post.IsTodo}"></span></h2>
+            </div>
+        </div>
+    </div>
+
 </div>
