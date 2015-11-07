@@ -6,6 +6,7 @@ namespace SkillSharing.Model
     {
         public string Name { get; set; }
         public bool IsRequired { get; set; }
+
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<OrgStructure> OrgStructures { get; set; } 
     }

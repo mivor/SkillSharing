@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PostMapping.cs" />
+    <Compile Include="PostStateMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seed.cs" />
     <Compile Include="SkillSharingDataContext.cs" />

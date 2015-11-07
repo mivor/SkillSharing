@@ -74,5 +74,14 @@
                 return response.data;
             }
         }
+
+        function getPublisherMetrics() {
+            return $http.get(WebApi + 'publishers\\metrics')
+                .then(getDataComplete);
+
+            function getDataComplete(response) {
+                return response.data;
+            }
+        }
     }
 })();

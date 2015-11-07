@@ -38,6 +38,16 @@
                         controllerAs: 'vm'
                     }
                 }
+            })
+            .state("dashboard", {
+                url: "/dashboard",
+                views: {
+                    '': {
+                        templateUrl: 'app/dashboard.html',
+                        controller: 'Dashboard',
+                        controllerAs: 'vm'
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/posts?type=todo');

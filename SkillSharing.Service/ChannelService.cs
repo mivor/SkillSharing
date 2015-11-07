@@ -23,5 +23,29 @@ namespace SkillSharing.Service
                 return ctx.Channels.ToList();
             }
         }
+
+        public void Subscribe(Guid channelId, Guid userId)
+        {
+            using (var ctx = new SkillSharingContext())
+            {
+                var channel = ctx.Channels.Single(x => x.Id == channelId);
+                var user = ctx.Users.Single(x => x.Id == userId);
+
+                user.Channels.Add(channel);
+                ctx.SaveChanges();
+            }
+        }
+
+        public void Unsubscribe(Guid channelId, Guid userId)
+        {
+            using (var ctx = new SkillSharingContext())
+            {
+                var user = ctx.Users.Single(x => x.Id == userId);
+                var channel = user.Channels.SingleOrDefault(x => x.Id == channelId);
+
+                user.Channels.Remove(channel);
+                ctx.SaveChanges();
+            }
+        }
     }
 }

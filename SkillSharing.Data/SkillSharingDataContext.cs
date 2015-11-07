@@ -16,5 +16,13 @@ namespace SkillSharing.Data
         {
             Database.SetInitializer(new SkillSharingSeed());
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Configurations.Add(new PostMapping());
+            modelBuilder.Configurations.Add(new PostStateMapping());
+        }
     }
 }

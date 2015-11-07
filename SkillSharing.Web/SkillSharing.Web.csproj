@@ -63,6 +63,9 @@
     <Content Include="app\channels\channels.html" />
     <Content Include="app\channels\channels.js" />
     <Content Include="app\channels\channels.module.js" />
+    <Content Include="app\dsahboard\dashboard.html" />
+    <Content Include="app\dsahboard\dashboard.module.js" />
+    <Content Include="app\dsahboard\dsahboard.js" />
     <Content Include="app\posts\posts.html" />
     <Content Include="app\posts\posts.js" />
     <Content Include="app\posts\posts.module.js" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using SkillSharing.Data;
 using SkillSharing.Model;
@@ -49,8 +48,8 @@ namespace SkillSharing.Service
                 state = state ?? new PostState
                 {
                     Id = Guid.NewGuid(),
-                    Post = new Post {Id = postState.Post.Id},
-                    User = new User {Id = postState.User.Id}
+                    PostId = postState.PostId,
+                    UserId = postState.UserId
                 };
                 state.IsTodo = postState.IsTodo;
                 state.IsDone = postState.IsDone;
@@ -61,8 +60,19 @@ namespace SkillSharing.Service
             }
         }
 
-        public void Create(Post post)
+        public void Create(string name, string content, bool isSticky, Guid userId, Guid channelId)
         {
+            var post = new Post
+            {
+                Id = Guid.NewGuid(),
+                Name = name,
+                IsSticky = isSticky,
+                Content = content,
+                Timestamp = DateTime.Now,
+                PublisherId = userId,
+                ChannelId = channelId
+            };
+
             using (var ctx = new SkillSharingContext())
             {
                 ctx.Posts.Add(post);

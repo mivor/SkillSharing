@@ -39,5 +39,17 @@ namespace SkillSharing.Controllers
                 Name = x.Name
             }).ToList();
         }
+
+        public void Post([FromBody] ChannelDto dto)
+        {
+            if (dto.IsSubscribed)
+            {
+                _service.Subscribe(dto.Id, UserSession.UserId);
+            }
+            else
+            {
+                _service.Unsubscribe(dto.Id, UserSession.UserId);
+            }
+        }
     }
 }

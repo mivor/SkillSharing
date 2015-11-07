@@ -30,25 +30,15 @@ namespace SkillSharing.Controllers
                 IsDone = post.IsDone,
                 IsTodo = post.IsTodo,
                 IsHidden = post.IsHidden,
-                User = new User {Id = UserSession.UserId},
-                Post = new Post {Id = post.Id}
+                UserId = UserSession.UserId,
+                PostId = post.Id
             };
             _service.UpdateState(state);
         }
 
         public void Put([FromBody] PostDto dto)
         {
-            var post = new Post
-            {
-                Id = dto.Id,
-                Name = dto.Name,
-                IsSticky = dto.IsSticky,
-                Content = dto.Content,
-                Timestamp = DateTime.Now,
-                Publisher = new User {Id = UserSession.UserId},
-                Channel = new Channel {Id = dto.ChannelId}
-            };
-            _service.Create(post);
+            _service.Create(dto.Name, dto.Content, dto.IsSticky, UserSession.UserId, dto.ChannelId);
         }
 
         [Route("api/posts/todo")]
