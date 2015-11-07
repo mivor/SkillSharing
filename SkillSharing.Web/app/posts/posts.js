@@ -9,16 +9,35 @@
 
     function Posts($stateParams, dataservice) {
         var vm = this;
-        vm.title = 'Posts';
+        vm.setAsDone = setAsDone;
+        vm.setAsToDo = setAsToDo;
+        vm.createPost = createPost;
 
         activate();
 
         function activate() {
+            vm.title = $stateParams.title;
             vm.type = $stateParams.type;
             vm.id = $stateParams.id;
             dataservice.getPosts(vm.type, vm.id).then(function (data) {
-                //vm.posts = [{ name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }];
                 vm.posts = data;
+            });
+        }
+
+        function setAsDone(post) {
+            post.IsDone = true;
+            dataservice.updatePost(post);
+        }
+
+        function setAsToDo(post) {
+            post.IsTodo = true;
+            dataservice.updatePost(post);
+        }
+
+        function createPost(post) {
+            post.ChannelId = vm.id;
+            dataservice.createPost(post).then(function (data) {
+                vm.posts.push(data);
             });
         }
     }

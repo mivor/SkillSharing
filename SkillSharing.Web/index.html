@@ -31,7 +31,7 @@
                 </a>
             </div>
             <ul class="list-group">
-                <a ui-sref="posts({type:'channel',id:channel.Id})" class="list-group-item" ng-repeat="channel in vm.channels">
+                <a ui-sref="posts({title:channel.Name,type:'channel',id:channel.Id})" class="list-group-item" ng-repeat="channel in vm.channels">
                     {{::channel.Name}}
                 </a>
             </ul>
@@ -41,12 +41,29 @@
                 </a>
             </ul>
             <ul class="list-group">
-                <a ui-sref="posts({type:'orgstructure',id:orgstructure.Id})" class="list-group-item" ng-repeat="orgstructure in vm.orgstructures">
+                <a ui-sref="posts({title:orgstructure.Name,type:'orgstructure',id:orgstructure.Id})" class="list-group-item" ng-repeat="orgstructure in vm.orgstructures">
                     {{::orgstructure.Name}}
                 </a>
             </ul>
         </div>
         <div ui-view class="col-sm-6"></div>
+        <div class="col-sm-3">
+            <h1>
+                To Do
+            </h1>
+            <div class="posts">
+                <div class="post" ng-repeat="post in vm.posts">
+                    <div class="content">
+                        <p>
+                            {{post.Content}}
+                        </p>
+                    </div>
+                    <div class="buttons">
+                        <h2 ng-click="vm.setAsDone(post)"><span class="glyphicon glyphicon-ok" ng-class="{'bookmarked':post.IsDone}"></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

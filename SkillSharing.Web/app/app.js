@@ -20,7 +20,7 @@
                 }
             })
             .state("posts", {
-                url: "/posts?type&id",
+                url: "/posts?title&type&id",
                 views: {
                     '': {
                         templateUrl: 'app/posts/posts.html',

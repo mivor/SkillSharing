@@ -10,6 +10,7 @@
     function Core($state, dataservice) {
         var vm = this;
         vm.title = 'Core';
+        vm.setAsDone = setAsDone;
 
         activate();
 
@@ -22,7 +23,15 @@
                 dataservice.getOrgstructures().then(function (data) {
                     vm.orgstructures = data;
                 });
+                dataservice.getPosts('todo').then(function (data) {
+                    vm.posts = data;
+                });
             });
+        }
+
+        function setAsDone(post) {
+            post.IsDone = true;
+            dataservice.updatePost(post);
         }
     }
 })();

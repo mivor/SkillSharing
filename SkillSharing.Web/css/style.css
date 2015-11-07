@@ -27,12 +27,17 @@
         float: left;
     }
 
+        .post .content > p {
+            margin: 10px 0;
+        }
+
         .channel .content > h2 {
             margin: 5px;
         }
 
     .post .buttons, .channel .buttons {
         width: 32%;
+        cursor: pointer;
     }
 
         .post .buttons > h2, .channel .buttons > h2 {
@@ -54,7 +59,7 @@
 }
 
     .glyphicon-ok.bookmarked {
-        color: #dff0d8;
+        color: #51B827;
     }
 
 .container {
