@@ -49,9 +49,9 @@ namespace SkillSharing.Controllers
         }
 
         [Route("api/posts/orgstructure/{id}")]
-        public IEnumerable<Post> GetByOrgStructure(Guid id)
+        public IEnumerable<PostDto> GetByOrgStructure(Guid id)
         {
-            return _service.GetByChannel(id).Select(x => new PostDto
+            return _service.GetByOrgStructure(id).Select(x => new PostDto
             {
                 Id = x.Post.Id,
                 Content = x.Post.Content,
