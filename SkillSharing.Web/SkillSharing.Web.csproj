@@ -66,9 +66,6 @@
     <Content Include="app\posts\posts.html" />
     <Content Include="app\posts\posts.js" />
     <Content Include="app\posts\posts.module.js" />
-    <Content Include="app\sidebar\sidebar.html" />
-    <Content Include="app\sidebar\sidebar.js" />
-    <Content Include="app\sidebar\sidebar.module.js" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -90,9 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\dashboard\dashboard.html" />
-    <Content Include="app\dashboard\dashboard.js" />
-    <Content Include="app\dashboard\dashboard.module.js" />
     <Content Include="index.html" />
     <Content Include="js\angular-mocks.js" />
     <Content Include="js\angular.js" />

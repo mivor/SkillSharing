@@ -16,11 +16,6 @@
                         templateUrl: 'app/dashboard/dashboard.html',
                         controller: 'Dashboard',
                         controllerAs: 'vm'
-                    },
-                    'sidebar@': {
-                        templateUrl: 'app/sidebar/sidebar.html',
-                        controller: 'Sidebar',
-                        controllerAs: 'vm'
                     }
                 }
             })
@@ -30,11 +25,6 @@
                     '': {
                         templateUrl: 'app/posts/posts.html',
                         controller: 'Posts',
-                        controllerAs: 'vm'
-                    },
-                    'sidebar@': {
-                        templateUrl: 'app/sidebar/sidebar.html',
-                        controller: 'Sidebar',
                         controllerAs: 'vm'
                     }
                 }
@@ -46,15 +36,10 @@
                         templateUrl: 'app/channels/channels.html',
                         controller: 'Channels',
                         controllerAs: 'vm'
-                    },
-                    'sidebar@': {
-                        templateUrl: 'app/sidebar/sidebar.html',
-                        controller: 'Sidebar',
-                        controllerAs: 'vm'
                     }
                 }
             });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/posts?type=todo');
     }
 })();

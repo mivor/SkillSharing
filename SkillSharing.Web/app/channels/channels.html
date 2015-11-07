@@ -3,8 +3,14 @@
 
     <div class="channels">
         <div class="channel" ng-repeat="channel in vm.channels">
-            <strong>{{channel.Name}}</strong>
-            <a><span class="glyphicon" ng-class="{'glyphicon-star-empty': channel.IsTodo,'glyphicon-star': !channel.IsTodo}"></span></a>
+            <div class="content">
+                <h2>
+                    <strong>{{channel.Name}}</strong>
+                </h2>
+            </div>
+            <div class="buttons">
+                <h2><span class="glyphicon" ng-class="{'glyphicon-star-empty': !channel.IsSubscribed,'glyphicon-star': channel.IsSubscribed}"></span></h2>
+            </div>
         </div>
     </div>
 </div>
