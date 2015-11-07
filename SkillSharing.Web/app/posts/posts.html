@@ -16,12 +16,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-xs-offset-6 col-xs-3">
+                <div class="col-xs-offset-9 col-xs-1">
                     <div class="checkbox">
                         <label><input type="checkbox" ng-model="vm.post.IsSticky">Sticky</label>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-1">
                     <button type="submit" class="btn btn-primary" ng-click="vm.createPost(vm.post)">Publish</button>
                 </div>
             </div>
@@ -31,8 +31,12 @@
     <div class="posts">
         <div class="post" ng-repeat="post in vm.posts" ng-class="{'sticky':post.IsSticky}" ng-hide="post.IsHidden">
             <div class="content">
-                <strong>{{post.Name}}</strong><br />
-                {{post.Content}}
+                <strong>{{post.Name}}</strong>
+                <span style="font-size: 12px">{{post.Timestamp | date:'MMMM d, H:mm'}}</span><br />
+                <a ng-if="vm.isLink(post.Content)" href="{{post.Content}}">{{post.Content}}</a>
+                <p ng-if="!vm.isLink(post.Content)">
+                    {{post.Content}}
+                </p>
             </div>
             <div class="buttons">
                 <h2 ng-click="vm.setAsHidden(post)"><span class="glyphicon glyphicon-eye-close"></span></h2>

@@ -5,7 +5,10 @@
         <div class="post" ng-repeat="post in vm.posts" ng-hide="post.IsHidden">
             <div class="content">
                 <strong>{{post.Name}}</strong><br />
-                {{post.Content}}
+                <a ng-if="vm.isLink(post.Content)" href="{{post.Content}}">{{post.Content}}</a>
+                <p ng-if="!vm.isLink(post.Content)">
+                    {{post.Content}}
+                </p>
             </div>
             <div class="buttons">
                 <h2 ng-click="vm.setAsHidden(post)"><span class="glyphicon glyphicon-eye-close"></span></h2>

@@ -11,6 +11,7 @@
         var vm = this;
         vm.title = 'Core';
         vm.setAsDone = setAsDone;
+        vm.isLink = dataservice.isLink;
 
         activate();
 

@@ -18,7 +18,8 @@
             updatePost: updatePost,
             createPost: createPost,
             subscribeChannel: subscribeChannel,
-            getPublisherMetrics: getPublisherMetrics
+            getPublisherMetrics: getPublisherMetrics,
+            isLink: isLink
         };
 
         function getCurrentUser() {
@@ -113,6 +114,12 @@
             function getDataComplete(response) {
                 return response.data;
             }
+        }
+
+        function isLink(text) {
+            if (text.indexOf('http') != -1)
+                return true;
+            return false;
         }
     }
 })();

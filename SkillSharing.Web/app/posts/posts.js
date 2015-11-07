@@ -13,6 +13,7 @@
         vm.setAsToDo = setAsToDo;
         vm.setAsHidden = setAsHidden;
         vm.createPost = createPost;
+        vm.isLink = dataservice.isLink;
 
         activate();
 

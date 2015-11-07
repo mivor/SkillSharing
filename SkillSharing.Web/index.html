@@ -18,7 +18,7 @@
 
     <script src="app/posts/posts.module.js"></script>
     <script src="app/posts/posts.js"></script>
-    
+
     <script src="app/dashboard/dashboard.module.js"></script>
     <script src="app/dashboard/dashboard.js"></script>
 
@@ -55,7 +55,8 @@
             <div class="posts">
                 <div class="post" ng-repeat="post in vm.posts">
                     <div class="content">
-                        <p>
+                        <a ng-if="vm.isLink(post.Content)" href="{{post.Content}}">{{post.Content}}</a>
+                        <p ng-if="!vm.isLink(post.Content)">
                             {{post.Content}}
                         </p>
                     </div>

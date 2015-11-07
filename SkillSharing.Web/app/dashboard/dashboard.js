@@ -13,6 +13,7 @@
         vm.setAsDone = setAsDone;
         vm.setAsToDo = setAsToDo;
         vm.setAsHidden = setAsHidden;
+        vm.isLink = dataservice.isLink;
 
         activate();
 

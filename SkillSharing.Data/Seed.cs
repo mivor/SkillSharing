@@ -157,41 +157,27 @@ namespace SkillSharing.Data
                 }
             };
 
-            var postStates = new List<PostState>
-            {
-                new PostState
-                {
-                    Id = Guid.NewGuid(),
-                },
-                new PostState
-                {
-                    Id = Guid.NewGuid(),
-                    IsTodo = true,
-                },
-                new PostState
-                {
-                    Id = Guid.NewGuid(),
-                    IsDone = true,
-
-                },
-                new PostState
-                {
-                    Id = Guid.NewGuid(),
-                    IsTodo = true,
-                    IsDone = true
-                }
-            };
+            var postStates = new List<PostState>();
 
             context.Users.Add(user);
 
             for (int i = 0; i < posts.Count; i++)
             {
+                var state = new PostState
+                {
+                    Id = Guid.NewGuid(),
+                    Post = posts[i],
+                    User = user
+                };
+                postStates.Add(state);
                 posts[i].PostStates = new Collection<PostState> { postStates[i] };
                 posts[i].Timestamp = DateTime.Now;
-                postStates[i].Post = posts[i];
-                postStates[i].User = user;
             }
 
+            foreach (var postState in postStates.Take(2))
+            {
+                postState.IsTodo = true;
+            }
             sts.ForEach(x => x.Users = new List<User> {user});
             user.Channels = new List<Channel> { cs, js };
             user.OrgStructures = sts;
