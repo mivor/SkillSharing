@@ -57,7 +57,15 @@ namespace SkillSharing.Service
                 state.IsHidden = postState.IsHidden;
 
                 ctx.PostStates.Add(state);
+                ctx.SaveChanges();
+            }
+        }
 
+        public void Create(Post post)
+        {
+            using (var ctx = new SkillSharingContext())
+            {
+                ctx.Posts.Add(post);
                 ctx.SaveChanges();
             }
         }

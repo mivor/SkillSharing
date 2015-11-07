@@ -24,12 +24,31 @@ namespace SkillSharing.Controllers
 
         public void Post([FromBody] PostDto post)
         {
-            
+            var state = new PostState
+            {
+                Id = post.StateId,
+                IsDone = post.IsDone,
+                IsTodo = post.IsTodo,
+                IsHidden = post.IsHidden,
+                User = new User {Id = UserSession.UserId},
+                Post = new Post {Id = post.Id}
+            };
+            _service.UpdateState(state);
         }
 
-        public void Put([FromBody] PostDto post)
+        public void Put([FromBody] PostDto dto)
         {
-            
+            var post = new Post
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                IsSticky = dto.IsSticky,
+                Content = dto.Content,
+                Timestamp = DateTime.Now,
+                Publisher = new User {Id = UserSession.UserId},
+                Channel = new Channel {Id = dto.ChannelId}
+            };
+            _service.Create(post);
         }
 
         [Route("api/posts/todo")]
@@ -59,6 +78,7 @@ namespace SkillSharing.Controllers
                 Content = model.Post.Content,
                 Timestamp = model.Post.Timestamp,
                 IsSticky = model.Post.IsSticky,
+                StateId = model.Id,
                 IsTodo = model.IsTodo,
                 IsDone = model.IsDone,
                 IsHidden = model.IsHidden,

@@ -9,7 +9,9 @@ namespace SkillSharing.Dtos
         public DateTime Timestamp { get; set; }
         public bool IsSticky { get; set; }
 
-
+        public Guid ChannelId { get; set; }
+        public Guid StateId { get; set; }
+        
         public bool IsTodo { get; set; }
         public bool IsDone { get; set; }
         public bool IsHidden { get; set; }
