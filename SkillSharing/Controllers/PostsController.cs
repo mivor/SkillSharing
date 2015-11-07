@@ -22,22 +22,22 @@ namespace SkillSharing.Controllers
             return _service.GetAll(UserSession.UserId).Select(AdaptModelToDto).ToList();
         }
 
-        [Route("posts/todo")]
+        [Route("api/posts/todo")]
         public IEnumerable<PostDto> GetTodo()
         {
             return _service.GetAllTodo(UserSession.UserId).Select(AdaptModelToDto).ToList();
         }
 
-        [Route("posts/channel/{id}")]
+        [Route("api/posts/channel/{id}")]
         public IEnumerable<PostDto> GetByChannel(Guid id)
         {
             return _service.GetByChannel(id, UserSession.UserId).Select(AdaptModelToDto).ToList();
         }
 
-        [Route("posts/orgstructure/{id}")]
+        [Route("api/posts/orgstructure/{id}")]
         public IEnumerable<PostDto> GetByOrgStructure(Guid id)
         {
-            return _service.GetByChannel(id, UserSession.UserId).Select(AdaptModelToDto).ToList();
+            return _service.GetByOrgStructure(id, UserSession.UserId).Select(AdaptModelToDto).ToList();
         }
 
         private PostDto AdaptModelToDto(PostState model)

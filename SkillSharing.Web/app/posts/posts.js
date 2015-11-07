@@ -5,9 +5,9 @@
         .module('app.posts')
         .controller('Posts', Posts);
 
-    Posts.$inject = ['$stateParams'];
+    Posts.$inject = ['$stateParams','dataservice'];
 
-    function Posts($stateParams) {
+    function Posts($stateParams, dataservice) {
         var vm = this;
         vm.title = 'Posts';
 
@@ -16,7 +16,10 @@
         function activate() {
             vm.type = $stateParams.type;
             vm.id = $stateParams.id;
-            vm.posts = [{ name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }];
+            dataservice.getPosts(vm.type, vm.id).then(function (data) {
+                //vm.posts = [{ name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }, { name: 'Title', content: 'Lorem ipsum', date: '12.12.2012' }];
+                vm.posts = data;
+            });
         }
     }
 })();

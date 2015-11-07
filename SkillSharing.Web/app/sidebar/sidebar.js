@@ -14,11 +14,14 @@
         activate();
 
         function activate() {
-            dataservice.getChannels.then(function (data) {
-                vm.channels = data;
-            });
-            dataservice.getOrgStructure.then(function (data) {
-                vm.orgStructures = data;
+            dataservice.getCurrentUser().then(function (data) {
+                vm.user = data;
+                dataservice.getChannels().then(function (data) {
+                    vm.channels = data;
+                });
+                dataservice.getOrgstructures().then(function (data) {
+                    vm.orgstructures = data;
+                });
             });
         }
     }

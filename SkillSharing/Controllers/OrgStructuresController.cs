@@ -15,7 +15,7 @@ namespace SkillSharing.Controllers
             _service = new OrgStructureService();
         }
 
-        [Route("orgstructures")]
+        [Route("api/orgstructures")]
         public IEnumerable<OrgStructureDto> Get()
         {
             return _service.GetAll(UserSession.UserId).Select(x => new OrgStructureDto

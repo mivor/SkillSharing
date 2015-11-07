@@ -1,10 +1,10 @@
 ﻿<div>
     <a ui-sref="posts({type:'todo'})">
-        <h1>User Name</h1>
+        <h1>{{vm.user.FirstName}} {{vm.user.LastName}}</h1>
     </a>
     <ul class="list-group">
-        <a ui-sref="posts({type:'posts',id:channel.id})" class="list-group-item" ng-repeat="channel in vm.channels">
-            {{::channel.name}}
+        <a ui-sref="posts({type:'channel',id:channel.Id})" class="list-group-item" ng-repeat="channel in vm.channels">
+            {{::channel.Name}}
         </a>
     </ul>
     <ul class="list-group">
@@ -13,8 +13,8 @@
         </a>
     </ul>
     <ul class="list-group">
-        <a ui-sref="posts({type:'orgstructure',id:orgstructure.id})" class="list-group-item" ng-repeat="orgstructure in vm.orgstructures">
-            {{::orgstructure.name}}
+        <a ui-sref="posts({type:'orgstructure',id:orgstructure.Id})" class="list-group-item" ng-repeat="orgstructure in vm.orgstructures">
+            {{::orgstructure.Name}}
         </a>
     </ul>
 </div>
