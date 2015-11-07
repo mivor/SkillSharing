@@ -9,11 +9,11 @@ namespace SkillSharing.Service
 {
     public class PostService
     {
-        public IEnumerable<Post> GetAll(Guid userId)
+        public IEnumerable<PostState> GetAll(Guid userId)
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.Users.Single(x => x.Id == userId).Channels.SelectMany(x => x.Posts);
+                return ctx.Users.Single(x => x.Id == userId).Channels.SelectMany(x => x.Posts).Select(x => GetPostState(x, userId)).ToList();
             }
         }
 
@@ -25,20 +25,31 @@ namespace SkillSharing.Service
             }
         }
 
-        public IEnumerable<PostState> GetByChannel(Guid channelId)
+        public IEnumerable<PostState> GetByChannel(Guid channelId, Guid userId)
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.PostStates.Where(x => x.Post.Channel.Id == channelId).Include(x => x.Post).ToList();
+                return ctx.Channels.Single(x => x.Id == channelId).Posts.Select(x => GetPostState(x, userId)).ToList();
             }
         }
 
-        public IEnumerable<PostState> GetByOrgStructure(Guid orgStructureId)
+        public IEnumerable<PostState> GetByOrgStructure(Guid orgStructureId, Guid userId)
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.PostStates.Where(x => x.Post.Channel.OrgStructures.Select(o => o.Id).Contains(orgStructureId)).Include(x => x.Post).ToList();
+                return ctx.OrgStructures.Single(x => x.Id == orgStructureId).Channels.SelectMany(x => x.Posts).Select(x => GetPostState(x, userId)).ToList();
             }
+        }
+
+        private PostState GetPostState(Post post, Guid userId)
+        {
+            var state = post.PostStates.SingleOrDefault(s => s.User.Id == userId);
+            return state ?? new PostState
+            {
+                Id = Guid.NewGuid(),
+                User = new User { Id = userId },
+                Post = post
+            };
         }
     }
 }
