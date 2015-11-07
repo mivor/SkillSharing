@@ -4,5 +4,6 @@
     {
         public string Name { get; set; }
         public bool IsRequired { get; set; }
+        public bool IsSubscribed { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace SkillSharing.Service
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.PostStates.Where(x => x.IsTodo && x.User.Id == userId).Include(x => x.Post).ToList();
+                return ctx.PostStates.Where(x => x.IsTodo && x.User.Id == userId).ToList();
             }
         }
 

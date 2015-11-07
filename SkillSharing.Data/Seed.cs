@@ -97,7 +97,8 @@ namespace SkillSharing.Data
                     Channel = cs,
                     Content = "ROCKS",
                     Name = "working post todo",
-                    Publisher = user
+                    Publisher = user,
+                    IsSticky = true
                 },
                 new Post
                 {
@@ -105,7 +106,7 @@ namespace SkillSharing.Data
                     Channel = sap,
                     Content = "inteligence",
                     Name = "sap training done",
-                    Publisher = user
+                    Publisher = user,
                 },
                 new Post
                 {
@@ -142,9 +143,12 @@ namespace SkillSharing.Data
                 }
             };
 
+            context.Users.Add(user);
+
             for (int i = 0; i < posts.Count; i++)
             {
                 posts[i].PostStates = new Collection<PostState> { postStates[i] };
+                posts[i].Timestamp = DateTime.Now;
                 postStates[i].Post = posts[i];
                 postStates[i].User = user;
             }
@@ -152,8 +156,6 @@ namespace SkillSharing.Data
             sts.ForEach(x => x.Users = new List<User> {user});
             user.Channels = new List<Channel> { cs, js };
             user.OrgStructures = sts;
-
-            context.Users.Add(user);
 
             context.OrgStructures.AddRange(sts);
             context.Posts.AddRange(posts);

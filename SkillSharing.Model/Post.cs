@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SkillSharing.Model
 {
@@ -6,8 +7,10 @@ namespace SkillSharing.Model
     {
         public string Name { get; set; }
         public string Content { get; set; }
-        public User Publisher { get; set; }
-        public Channel Channel { get; set; }
+        public DateTime Timestamp { get; set; }
+        public bool IsSticky { get; set; }
+        public virtual User Publisher { get; set; }
+        public virtual Channel Channel { get; set; }
         public virtual ICollection<PostState> PostStates { get; set; } 
     }
 }
