@@ -36,9 +36,10 @@ namespace SkillSharing.Controllers
             _service.UpdateState(state);
         }
 
-        public void Put([FromBody] PostDto dto)
+        public PostDto Put([FromBody] PostDto dto)
         {
-            _service.Create(dto.Name, dto.Content, dto.IsSticky, UserSession.UserId, dto.ChannelId);
+            var result = _service.Create(dto.Name, dto.Content, dto.IsSticky, UserSession.UserId, dto.ChannelId);
+            return AdaptModelToDto(result);
         }
 
         [Route("api/posts/todo")]

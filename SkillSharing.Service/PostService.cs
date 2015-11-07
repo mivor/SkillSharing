@@ -50,10 +50,10 @@ namespace SkillSharing.Service
                 {
                     state = new PostState
                     {
-                    Id = Guid.NewGuid(),
-                    PostId = postState.PostId,
-                    UserId = postState.UserId
-                };
+                        Id = Guid.NewGuid(),
+                        PostId = postState.PostId,
+                        UserId = postState.UserId
+                    };
                     ctx.PostStates.Add(state);
                 }
                 
@@ -65,7 +65,7 @@ namespace SkillSharing.Service
             }
         }
 
-        public void Create(string name, string content, bool isSticky, Guid userId, Guid channelId)
+        public PostState Create(string name, string content, bool isSticky, Guid userId, Guid channelId)
         {
             var post = new Post
             {
@@ -82,6 +82,12 @@ namespace SkillSharing.Service
             {
                 ctx.Posts.Add(post);
                 ctx.SaveChanges();
+                return new PostState
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = userId,
+                    Post = post,
+                };
             }
         }
 
