@@ -17,48 +17,39 @@ namespace SkillSharing.Controllers
             _service = new PostService();
         }
 
-        public IEnumerable<Post> Get()
+        public IEnumerable<PostDto> Get()
         {
-            return _service.GetAll(UserSession.UserId);
+            return _service.GetAll(UserSession.UserId).Select(AdaptModelToDto).ToList();
         }
 
         [Route("api/posts/todo")]
         public IEnumerable<PostDto> GetTodo()
         {
-            return _service.GetAllTodo(UserSession.UserId).Select(x => new PostDto
-            {
-                Id = x.Post.Id,
-                Content = x.Post.Content,
-                Name = x.Post.Name,
-                IsTodo = x.IsTodo,
-                IsDone = x.IsDone
-            }).ToList();
+            return _service.GetAllTodo(UserSession.UserId).Select(AdaptModelToDto).ToList();
         }
 
         [Route("api/posts/channel/{id}")]
         public IEnumerable<PostDto> GetByChannel(Guid id)
         {
-            return _service.GetByChannel(id).Select(x => new PostDto
-            {
-                Id = x.Post.Id,
-                Content = x.Post.Content,
-                Name = x.Post.Name,
-                IsTodo = x.IsTodo,
-                IsDone = x.IsDone
-            }).ToList();
+            return _service.GetByChannel(id, UserSession.UserId).Select(AdaptModelToDto).ToList();
         }
 
         [Route("api/posts/orgstructure/{id}")]
         public IEnumerable<PostDto> GetByOrgStructure(Guid id)
         {
-            return _service.GetByOrgStructure(id).Select(x => new PostDto
+            return _service.GetByOrgStructure(id, UserSession.UserId).Select(AdaptModelToDto).ToList();
+        }
+
+        private PostDto AdaptModelToDto(PostState model)
+        {
+            return new PostDto
             {
-                Id = x.Post.Id,
-                Content = x.Post.Content,
-                Name = x.Post.Name,
-                IsTodo = x.IsTodo,
-                IsDone = x.IsDone
-            }).ToList();
+                Id = model.Post.Id,
+                Content = model.Post.Content,
+                Name = model.Post.Name,
+                IsTodo = model.IsTodo,
+                IsDone = model.IsDone
+            };
         }
     }
 }

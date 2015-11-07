@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using SkillSharing.Model;
@@ -121,40 +122,38 @@ namespace SkillSharing.Data
                 new PostState
                 {
                     Id = Guid.NewGuid(),
-                    Post = posts[0],
-                    User = user
                 },
                 new PostState
                 {
                     Id = Guid.NewGuid(),
-                    Post = posts[1],
-                    User = user,
                     IsTodo = true,
                 },
                 new PostState
                 {
                     Id = Guid.NewGuid(),
-                    Post = posts[2],
-                    User = user,
                     IsDone = true,
 
                 },
                 new PostState
                 {
                     Id = Guid.NewGuid(),
-                    Post = posts[3],
-                    User = user,
                     IsTodo = true,
                     IsDone = true
                 }
             };
+
+            for (int i = 0; i < posts.Count; i++)
+            {
+                posts[i].PostStates = new Collection<PostState> { postStates[i] };
+                postStates[i].Post = posts[i];
+                postStates[i].User = user;
+            }
 
             sts.ForEach(x => x.Users = new List<User> {user});
             user.Channels = new List<Channel> { cs, js };
             user.OrgStructures = sts;
 
             context.Users.Add(user);
-
 
             context.OrgStructures.AddRange(sts);
             context.Posts.AddRange(posts);
