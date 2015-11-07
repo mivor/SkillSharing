@@ -1,13 +1,12 @@
 ﻿<div>
     {{vm.type}}
-    {{vm.id}}
 
     <div class="posts">
         <div class="post" ng-repeat="post in vm.posts">
             <div class="post-title">
-                <strong>{{post.Name}}</strong> {{post.date}}
-                <a><span class="glyphicon glyphicon-star-empty"></span></a>
-                <a><span class="glyphicon glyphicon-ok"></span></a>
+                <strong>{{post.Name}}</strong>
+                <a><span class="glyphicon" ng-class="{'glyphicon-star-empty': post.IsTodo,'glyphicon-star': !post.IsTodo}"></span></a>
+                <a><span class="glyphicon glyphicon-ok" ng-class="{'bookmarked':post.IsDone}"></span></a>
             </div>
             <div class="content">
                 {{post.Content}}

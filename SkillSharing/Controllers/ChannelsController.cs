@@ -15,7 +15,7 @@ namespace SkillSharing.Controllers
             _service = new ChannelService();
         }
 
-        [Route("channels/subscribed")]
+        [Route("api/channels/subscribed")]
         public IEnumerable<ChannelDto> GetSubscribed()
         {
             return _service.GetAllSubscribed(UserSession.UserId).Select(x => new ChannelDto

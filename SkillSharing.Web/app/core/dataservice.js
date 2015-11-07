@@ -13,6 +13,7 @@
             getCurrentUser: getCurrentUser,
             getPosts: getPosts,
             getChannels: getChannels,
+            getSubscribedChannels: getSubscribedChannels,
             getOrgstructures: getOrgstructures
         };
 
@@ -48,7 +49,16 @@
         }
 
         function getChannels() {
-            return $http.get(WebApi + 'channels/subscribed')
+            return $http.get(WebApi + 'channels')
+                .then(getDataComplete);
+
+            function getDataComplete(response) {
+                return response.data;
+            }
+        }
+
+        function getSubscribedChannels() {
+            return $http.get(WebApi + 'channels\\subscribed')
                 .then(getDataComplete);
 
             function getDataComplete(response) {
