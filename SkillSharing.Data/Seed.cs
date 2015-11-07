@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using SkillSharing.Model;
 
 namespace SkillSharing.Data
@@ -70,10 +71,14 @@ namespace SkillSharing.Data
             bi.Channels = new List<Channel> { sap };
             sm.Channels = new List<Channel> { cs };
 
+
+
             var sts = new List<OrgStructure>
             {
                 bi, sm, yk, tc
             };
+
+            
 
             var posts = new List<Post>
             {
@@ -82,7 +87,15 @@ namespace SkillSharing.Data
                     Id = Guid.NewGuid(),
                     Channel = cs,
                     Content = "ROCKS",
-                    Name = "working post",
+                    Name = "working post none",
+                    Publisher = user
+                },
+                new Post
+                {
+                    Id = Guid.NewGuid(),
+                    Channel = cs,
+                    Content = "ROCKS",
+                    Name = "working post todo",
                     Publisher = user
                 },
                 new Post
@@ -90,15 +103,62 @@ namespace SkillSharing.Data
                     Id = Guid.NewGuid(),
                     Channel = sap,
                     Content = "inteligence",
-                    Name = "sap training",
+                    Name = "sap training done",
+                    Publisher = user
+                },
+                new Post
+                {
+                    Id = Guid.NewGuid(),
+                    Channel = sap,
+                    Content = "inteligence",
+                    Name = "sap training todo done",
                     Publisher = user
                 }
             };
 
+            var postStates = new List<PostState>
+            {
+                new PostState
+                {
+                    Id = Guid.NewGuid(),
+                    Post = posts[0],
+                    User = user
+                },
+                new PostState
+                {
+                    Id = Guid.NewGuid(),
+                    Post = posts[1],
+                    User = user,
+                    IsTodo = true,
+                },
+                new PostState
+                {
+                    Id = Guid.NewGuid(),
+                    Post = posts[2],
+                    User = user,
+                    IsDone = true,
+
+                },
+                new PostState
+                {
+                    Id = Guid.NewGuid(),
+                    Post = posts[3],
+                    User = user,
+                    IsTodo = true,
+                    IsDone = true
+                }
+            };
+
             sts.ForEach(x => x.Users = new List<User> {user});
+            user.Channels = new List<Channel> { cs, js };
+            user.OrgStructures = sts;
+
+            context.Users.Add(user);
+
 
             context.OrgStructures.AddRange(sts);
             context.Posts.AddRange(posts);
+            context.PostStates.AddRange(postStates);
 
             context.SaveChanges();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using SkillSharing.Data;
 using SkillSharing.Model;
@@ -20,7 +21,7 @@ namespace SkillSharing.Service
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.PostStates.Where(x => x.IsTodo && x.User.Id == userId).ToList();
+                return ctx.PostStates.Where(x => x.IsTodo && x.User.Id == userId).Include(x => x.Post).ToList();
             }
         }
 
