@@ -21,7 +21,7 @@ namespace SkillSharing.Service
         {
             using (var ctx = new SkillSharingContext())
             {
-                return ctx.PostStates.Where(x => x.IsTodo && x.User.Id == userId).ToList();
+                return ctx.PostStates.Where(x => x.IsTodo && x.User.Id == userId).Include(x => x.Post).ToList();
             }
         }
 
@@ -46,17 +46,21 @@ namespace SkillSharing.Service
             using (var ctx = new SkillSharingContext())
             {
                 var state = ctx.PostStates.SingleOrDefault(x => x.Id == postState.Id && x.User.Id == postState.User.Id);
-                state = state ?? new PostState
+                if (state == null)
                 {
-                    Id = Guid.NewGuid(),
-                    Post = new Post {Id = postState.Post.Id},
-                    User = new User {Id = postState.User.Id}
-                };
+                    state = new PostState
+                    {
+                        Id = Guid.NewGuid(),
+                        Post = new Post { Id = postState.Post.Id },
+                        User = new User { Id = postState.User.Id }
+                    };
+                    ctx.PostStates.Add(state);
+                }
+                
                 state.IsTodo = postState.IsTodo;
                 state.IsDone = postState.IsDone;
                 state.IsHidden = postState.IsHidden;
 
-                ctx.PostStates.Add(state);
                 ctx.SaveChanges();
             }
         }

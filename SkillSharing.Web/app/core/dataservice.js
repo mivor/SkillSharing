@@ -14,7 +14,9 @@
             getPosts: getPosts,
             getChannels: getChannels,
             getSubscribedChannels: getSubscribedChannels,
-            getOrgstructures: getOrgstructures
+            getOrgstructures: getOrgstructures,
+            updatePost: updatePost,
+            createPost: createPost
         };
 
         function getCurrentUser() {
@@ -68,6 +70,24 @@
 
         function getOrgstructures() {
             return $http.get(WebApi + 'orgstructures')
+                .then(getDataComplete);
+
+            function getDataComplete(response) {
+                return response.data;
+            }
+        }
+
+        function updatePost(post) {
+            return $http.post(WebApi + 'posts', post)
+                .then(getDataComplete);
+
+            function getDataComplete(response) {
+                return response.data;
+            }
+        }
+
+        function createPost(post) {
+            return $http.put(WebApi + 'posts', post)
                 .then(getDataComplete);
 
             function getDataComplete(response) {

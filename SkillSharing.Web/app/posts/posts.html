@@ -1,5 +1,32 @@
 ﻿<div>
-    {{vm.type}}
+    <h1>{{vm.title}}</h1>
+
+    <div>
+        <ng-form class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="control-label col-xs-2">Name</label>
+                <div class="col-xs-10">
+                    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="vm.post.Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-xs-2">Content</label>
+                <div class="col-xs-10">
+                    <input type="text" class="form-control" id="content" placeholder="Content" ng-model="vm.post.Content">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-6 col-xs-3">
+                    <div class="checkbox" ng-model="vm.post.Sticky">
+                        <label><input type="checkbox">Sticky</label>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <button type="submit" class="btn btn-primary" ng-click="vm.createPost(vm.post)">Publish</button>
+                </div>
+            </div>
+        </ng-form>
+    </div>
 
     <div class="posts">
         <div class="post" ng-repeat="post in vm.posts">
@@ -8,9 +35,10 @@
                 {{post.Content}}
             </div>
             <div class="buttons">
-                <h2><span class="glyphicon glyphicon-ok" ng-class="{'bookmarked':post.IsDone}"></span></h2>
-                <h2><span class="glyphicon" ng-class="{'glyphicon-star-empty': post.IsTodo,'glyphicon-star': !post.IsTodo}"></span></h2>
+                <h2 ng-click="vm.setAsDone(post)"><span class="glyphicon glyphicon-ok" ng-class="{'bookmarked':post.IsDone}"></span></h2>
+                <h2 ng-click="vm.setAsToDo(post)"><span class="glyphicon" ng-class="{'glyphicon-star-empty': !post.IsTodo,'glyphicon-star': post.IsTodo}"></span></h2>
             </div>
         </div>
     </div>
+
 </div>
