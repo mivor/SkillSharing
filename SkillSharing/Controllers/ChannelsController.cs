@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using SkillSharing.Dtos;
@@ -22,16 +23,19 @@ namespace SkillSharing.Controllers
             {
                 Id = x.Id,
                 IsRequired = x.IsRequired,
+                IsSubscribed = true,
                 Name = x.Name
             }).ToList();
         }
 
         public IEnumerable<ChannelDto> Get()
         {
+            var subscribedChannels = new HashSet<Guid>(_service.GetAllSubscribed(UserSession.UserId).Select(x => x.Id));
             return _service.GetAll().Select(x => new ChannelDto
             {
                 Id = x.Id,
                 IsRequired = x.IsRequired,
+                IsSubscribed = subscribedChannels.Contains(x.Id),
                 Name = x.Name
             }).ToList();
         }
