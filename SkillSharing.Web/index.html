@@ -1,4 +1,4 @@
-﻿<html ng-app="app" ng-controller="Core">
+﻿<html ng-app="app" ng-controller="Core as vm">
 <head>
     <title>Accesa | Knowledge Sharing Platform</title>
     <link href="css/bootstrap.css" rel="stylesheet" />
@@ -18,19 +18,35 @@
     <script src="app/core/core.js"></script>
     <script src="app/core/dataservice.js"></script>
 
-    <script src="app/dashboard/dashboard.module.js"></script>
-    <script src="app/dashboard/dashboard.js"></script>
-
     <script src="app/posts/posts.module.js"></script>
     <script src="app/posts/posts.js"></script>
 
-    <script src="app/sidebar/sidebar.module.js"></script>
-    <script src="app/sidebar/sidebar.js"></script>
 </head>
-<body class="container">
+<body class="container-fluid">
     <div class="row">
-        <div ui-view="sidebar" class="col-md-3"></div>
-        <div ui-view="" class="col-md-9"></div>
+        <div ui-view="sidebar" class="col-sm-3 sidebar">
+            <div class="user">
+                <a ui-sref="posts({type:'todo'})">
+                    <h1>{{vm.user.FirstName}} {{vm.user.LastName}}</h1>
+                </a>
+            </div>
+            <ul class="list-group">
+                <a ui-sref="posts({type:'channel',id:channel.Id})" class="list-group-item" ng-repeat="channel in vm.channels">
+                    {{::channel.Name}}
+                </a>
+            </ul>
+            <ul class="list-group">
+                <a ui-sref="channels" class="list-group-item">
+                    Channels
+                </a>
+            </ul>
+            <ul class="list-group">
+                <a ui-sref="posts({type:'orgstructure',id:orgstructure.Id})" class="list-group-item" ng-repeat="orgstructure in vm.orgstructures">
+                    {{::orgstructure.Name}}
+                </a>
+            </ul>
+        </div>
+        <div ui-view class="col-sm-6"></div>
     </div>
 </body>
 </html>
