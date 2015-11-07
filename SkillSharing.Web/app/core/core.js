@@ -5,9 +5,9 @@
         .module('app.core')
         .controller('Core', Core);
 
-    Core.$inject = ['$state','dataservice'];
+    Core.$inject = ['$scope','$state','dataservice'];
 
-    function Core($state, dataservice) {
+    function Core($scope, $state, dataservice) {
         var vm = this;
         vm.title = 'Core';
         vm.setAsDone = setAsDone;
@@ -24,14 +24,36 @@
                     vm.orgstructures = data;
                 });
                 dataservice.getPosts('todo').then(function (data) {
-                    vm.posts = data;
+                    vm.posts = []
+                    angular.forEach(data, function (post) {
+                        if (!post.IsDone) {
+                            vm.posts.push(post);
+                        }
+                    })
                 });
             });
         }
 
         function setAsDone(post) {
-            post.IsDone = true;
+            post.IsDone = !post.IsTodo;
             dataservice.updatePost(post);
         }
+
+        $scope.$on('updateToDo', function () {
+            dataservice.getPosts('todo').then(function (data) {
+                vm.posts = []
+                angular.forEach(data, function (post) {
+                    if (!post.IsDone) {
+                        vm.posts.push(post);
+                    }
+                })
+            });
+        });
+
+        $scope.$on('updateChannels', function () {
+            dataservice.getSubscribedChannels().then(function (data) {
+                vm.channels = data;
+            });
+        });
     }
 })();

@@ -82,3 +82,7 @@
         .sidebar .user a:hover {
             text-decoration: none;
         }
+
+.sticky {
+    background-color: #AFDEED;
+}

@@ -16,7 +16,8 @@
             getSubscribedChannels: getSubscribedChannels,
             getOrgstructures: getOrgstructures,
             updatePost: updatePost,
-            createPost: createPost
+            createPost: createPost,
+            subscribeChannel: subscribeChannel
         };
 
         function getCurrentUser() {
@@ -97,6 +98,15 @@
 
         function getPublisherMetrics() {
             return $http.get(WebApi + 'publishers\\metrics')
+                .then(getDataComplete);
+
+            function getDataComplete(response) {
+                return response.data;
+            }
+        }
+
+        function subscribeChannel(channel) {
+            return $http.post(WebApi + 'channels', channel)
                 .then(getDataComplete);
 
             function getDataComplete(response) {

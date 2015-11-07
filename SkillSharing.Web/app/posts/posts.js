@@ -5,9 +5,9 @@
         .module('app.posts')
         .controller('Posts', Posts);
 
-    Posts.$inject = ['$stateParams','dataservice'];
+    Posts.$inject = ['$rootScope', '$stateParams', 'dataservice'];
 
-    function Posts($stateParams, dataservice) {
+    function Posts($rootScope, $stateParams, dataservice) {
         var vm = this;
         vm.setAsDone = setAsDone;
         vm.setAsToDo = setAsToDo;
@@ -20,18 +20,22 @@
             vm.type = $stateParams.type;
             vm.id = $stateParams.id;
             dataservice.getPosts(vm.type, vm.id).then(function (data) {
-                vm.posts = data;
+                vm.posts = data ? data : [];
             });
         }
 
         function setAsDone(post) {
             post.IsDone = true;
-            dataservice.updatePost(post);
+            dataservice.updatePost(post).then(function () {
+                $rootScope.$broadcast('updateToDo');
+            });
         }
 
         function setAsToDo(post) {
-            post.IsTodo = true;
-            dataservice.updatePost(post);
+            post.IsTodo = !post.IsTodo;
+            dataservice.updatePost(post).then(function () {
+                $rootScope.$broadcast('updateToDo');
+            });
         }
 
         function createPost(post) {
