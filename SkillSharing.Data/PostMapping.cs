@@ -8,7 +8,7 @@ namespace SkillSharing.Data
         public PostMapping()
         {
             Property(x => x.ChannelId).HasColumnName("Channel_Id");
-            HasRequired(x => x.Channel).WithMany().HasForeignKey(y => y.ChannelId).WillCascadeOnDelete(false);
+            HasRequired(x => x.Channel).WithMany(x => x.Posts).HasForeignKey(y => y.ChannelId).WillCascadeOnDelete(false);
 
             Property(x => x.PublisherId).HasColumnName("Publisher_Id");
             HasRequired(x => x.Publisher).WithMany().HasForeignKey(y => y.PublisherId).WillCascadeOnDelete(false);

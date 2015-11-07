@@ -43,13 +43,13 @@
                 url: "/dashboard",
                 views: {
                     '': {
-                        templateUrl: 'app/dashboard.html',
+                        templateUrl: 'app/dashboard/dashboard.html',
                         controller: 'Dashboard',
                         controllerAs: 'vm'
                     }
                 }
             });
 
-        $urlRouterProvider.otherwise('/posts?type=todo');
+        $urlRouterProvider.otherwise('/dashboard');
     }
 })();

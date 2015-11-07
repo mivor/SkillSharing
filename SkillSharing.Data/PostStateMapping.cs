@@ -11,7 +11,7 @@ namespace SkillSharing.Data
             HasRequired(x => x.User).WithMany().HasForeignKey(y => y.UserId).WillCascadeOnDelete(false);
 
             Property(x => x.PostId).HasColumnName("Post_Id");
-            HasRequired(x => x.Post).WithMany().HasForeignKey(y => y.PostId).WillCascadeOnDelete(false);
+            HasRequired(x => x.Post).WithMany(x => x.PostStates).HasForeignKey(y => y.PostId).WillCascadeOnDelete(false);
         }
     }
 }

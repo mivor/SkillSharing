@@ -20,13 +20,16 @@
 
     <script src="app/posts/posts.module.js"></script>
     <script src="app/posts/posts.js"></script>
+    
+    <script src="app/dashboard/dashboard.module.js"></script>
+    <script src="app/dashboard/dashboard.js"></script>
 
 </head>
 <body class="container-fluid">
     <div class="row">
         <div ui-view="sidebar" class="col-sm-3 sidebar">
             <div class="user">
-                <a ui-sref="posts({type:'todo'})">
+                <a ui-sref="dashboard">
                     <h1>{{vm.user.FirstName}} {{vm.user.LastName}}</h1>
                 </a>
             </div>

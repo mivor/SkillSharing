@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.dsahboard')
+        .module('app.dashboard')
         .controller('Dashboard', Dashboard);
 
     Dashboard.$inject = ['dataservice'];

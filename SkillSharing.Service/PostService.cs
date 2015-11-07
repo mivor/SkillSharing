@@ -45,7 +45,7 @@ namespace SkillSharing.Service
         {
             using (var ctx = new SkillSharingContext())
             {
-                var state = ctx.PostStates.SingleOrDefault(x => x.Id == postState.Id && x.User.Id == postState.User.Id);
+                var state = ctx.PostStates.SingleOrDefault(x => x.Id == postState.Id && x.UserId == postState.UserId);
                 if (state == null)
                 {
                     state = new PostState

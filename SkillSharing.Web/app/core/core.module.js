@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('app.core', ['app.channels', 'app.posts']);
+        .module('app.core', ['app.channels', 'app.posts', 'app.dashboard']);
 })();
